@@ -28,7 +28,7 @@ namespace CShp_CalculosTest
             // Act  
             var subtracao = Calculo.Subtrair(num1, num2);
             //Assert  
-            Assert.Equal(valorEsperado, subtracao);
+            Assert.Equal(valorEsperado, subtracao,1);
         }
         [Fact]
         public void Multiplicar_DoisDouble_RetornaDouble()
