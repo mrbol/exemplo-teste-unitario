@@ -2,11 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using TesteApp.Application.Interfaces;
 using TesteApp.Domain;
 using TesteApp.Domain.Entities;
+using TesteApp.Persistence.Mappings;
 
 namespace TesteApp.Persistence.Context
 {
@@ -19,7 +21,8 @@ namespace TesteApp.Persistence.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Product>().Property(p => p.Rate).HasColumnType("decimal(10, 2)");
+            new ProdutoMapping().Configure(modelBuilder.Entity<Product>());
+            
             base.OnModelCreating(modelBuilder);
         }
 
