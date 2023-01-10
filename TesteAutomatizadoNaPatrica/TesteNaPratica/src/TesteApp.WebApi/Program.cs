@@ -1,3 +1,4 @@
+using FluentValidation.AspNetCore;
 using Microsoft.Extensions.Configuration;
 using TesteApp.Application;
 using TesteApp.Persistence;

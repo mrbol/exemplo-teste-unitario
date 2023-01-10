@@ -15,6 +15,7 @@ namespace TesteApp.Application
         {
             //services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IValidatoService, ValidatoService>();
         }
     }
 }
