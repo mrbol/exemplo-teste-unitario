@@ -39,22 +39,22 @@ namespace TesteApp.Persistence.Repository
             return await DbSet.ToListAsync();
         }
 
-        public virtual async Task Create(TEntity entity)
+        public virtual async Task<int> Create(TEntity entity)
         {
             DbSet.Add(entity);
-            await SaveChanges();
+            return await SaveChanges();
         }
 
-        public virtual async Task Update(TEntity entity)
+        public virtual async Task<int> Update(TEntity entity)
         {
             DbSet.Update(entity);
-            await SaveChanges();
+            return await SaveChanges();
         }
 
-        public virtual async Task Delete(int id)
+        public virtual async Task<int> Delete(int id)
         {
             DbSet.Remove(new TEntity { Id = id });
-            await SaveChanges();
+            return await SaveChanges();
         }
 
         public async Task<int> SaveChanges()

@@ -11,11 +11,11 @@ namespace TesteApp.Application.Interfaces
 {
     public interface IRepository<TEntity> : IDisposable where TEntity : BaseEntity
     {
-        Task Create(TEntity entity);
+        Task<int> Create(TEntity entity);
         Task<TEntity> Get(int id);
         Task<List<TEntity>> GetAll();
-        Task Update(TEntity entity);
-        Task Delete(int id);
+        Task<int> Update(TEntity entity);
+        Task<int> Delete(int id);
         Task<IEnumerable<TEntity>> Search(Expression<Func<TEntity, bool>> predicate);
         Task<int> SaveChanges();
     }

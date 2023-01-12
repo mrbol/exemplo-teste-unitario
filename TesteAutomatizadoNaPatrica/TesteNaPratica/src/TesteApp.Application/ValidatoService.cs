@@ -7,46 +7,36 @@ using System.Text;
 using System.Threading.Tasks;
 using TesteApp.Application.Interfaces;
 using TesteApp.Domain.Common;
+using TesteApp.Domain.Entities;
 
 namespace TesteApp.Application
 {
     public class ValidatoService : IValidatoService
     {
-        private List<String> _notifications;
+        private Notifier _notifications;
         public ValidatoService()
         {
-            _notifications = new List<string>();
+            _notifications = new Notifier();
         }
 
-        public bool ExistsError()
-        {
-            return _notifications.Any();
-        }
-
-        private List<string> Notify(ValidationResult validationResult)
+        private Notifier Notify(ValidationResult validationResult)
         {
             foreach (var error in validationResult.Errors)
             {
                 _notifications.Add(error.ErrorMessage);
             }
-
             return _notifications;
         }
 
-        public async Task<List<string>>  RunValidation<TV, TE>(TV validacao, TE entidade)
+        public Notifier RunValidation<TV, TE>(TV validacao, TE entidade)
             where TV : AbstractValidator<TE>
             where TE : BaseEntity
         {
-            await Task.Run(() =>
+            var validator = validacao.Validate(entidade);
+            if (!validator.IsValid)
             {
-                var validator = validacao.Validate(entidade);
-
-                if (!validator.IsValid)
-                {
-                    Notify(validator);
-                }
-            });
-
+                Notify(validator);
+            }
             return _notifications;
         }
     }

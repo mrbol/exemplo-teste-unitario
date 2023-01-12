@@ -7,13 +7,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{640D276C-AB8
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{26832BCC-6A40-4BFB-82EC-1DE68EDCFB7D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TesteApp.Domain", "src\TesteApp.Domain\TesteApp.Domain.csproj", "{837EB83D-A455-4E9F-A90A-58E4205BE927}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TesteApp.Domain", "src\TesteApp.Domain\TesteApp.Domain.csproj", "{837EB83D-A455-4E9F-A90A-58E4205BE927}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TesteApp.Application", "src\TesteApp.Application\TesteApp.Application.csproj", "{0BE58506-F66A-4D06-AB2B-EE5BDD9BF427}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TesteApp.Application", "src\TesteApp.Application\TesteApp.Application.csproj", "{0BE58506-F66A-4D06-AB2B-EE5BDD9BF427}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TesteApp.Persistence", "src\TesteApp.Persistence\TesteApp.Persistence.csproj", "{E44D4799-2598-407A-8390-FC4469A5B150}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TesteApp.Persistence", "src\TesteApp.Persistence\TesteApp.Persistence.csproj", "{E44D4799-2598-407A-8390-FC4469A5B150}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TesteApp.WebApi", "src\TesteApp.WebApi\TesteApp.WebApi.csproj", "{D8E2CBC7-8609-4963-998D-5C8D3E7E1D90}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TesteApp.WebApi", "src\TesteApp.WebApi\TesteApp.WebApi.csproj", "{D8E2CBC7-8609-4963-998D-5C8D3E7E1D90}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProjectNaPratica", "test\TestProjectNaPratica\TestProjectNaPratica.csproj", "{41682FC2-D499-4DE8-91E8-3B3D4371F0F7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +39,10 @@ Global
 		{D8E2CBC7-8609-4963-998D-5C8D3E7E1D90}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D8E2CBC7-8609-4963-998D-5C8D3E7E1D90}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D8E2CBC7-8609-4963-998D-5C8D3E7E1D90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41682FC2-D499-4DE8-91E8-3B3D4371F0F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41682FC2-D499-4DE8-91E8-3B3D4371F0F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41682FC2-D499-4DE8-91E8-3B3D4371F0F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41682FC2-D499-4DE8-91E8-3B3D4371F0F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +52,7 @@ Global
 		{0BE58506-F66A-4D06-AB2B-EE5BDD9BF427} = {640D276C-AB8A-4FAE-BC05-4BA283CA51F4}
 		{E44D4799-2598-407A-8390-FC4469A5B150} = {640D276C-AB8A-4FAE-BC05-4BA283CA51F4}
 		{D8E2CBC7-8609-4963-998D-5C8D3E7E1D90} = {640D276C-AB8A-4FAE-BC05-4BA283CA51F4}
+		{41682FC2-D499-4DE8-91E8-3B3D4371F0F7} = {26832BCC-6A40-4BFB-82EC-1DE68EDCFB7D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8B85447F-4B88-464A-9A07-3F108C69B43E}

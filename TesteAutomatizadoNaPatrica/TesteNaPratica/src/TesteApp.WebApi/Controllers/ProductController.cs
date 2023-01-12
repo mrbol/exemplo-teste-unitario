@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TesteApp.Application.Interfaces;
-using TesteApp.Application.Validation;
 using TesteApp.Domain.Entities;
 
 
@@ -11,32 +11,77 @@ namespace TesteApp.WebApi.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        private readonly IValidatoService _validatoService;
+
         private readonly IProductService _produtoService;
 
-        public ProductController(IProductService produtoService, IValidatoService validatoService)
-        {            
+        public ProductController(IProductService produtoService)
+        {
             _produtoService = produtoService;
-            _validatoService = validatoService;
+        }
+
+        [HttpGet("{id:int}")]
+        [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var produto = await _produtoService.Get(id);
+            if (produto == null)
+            {
+                return NotFound();
+            }
+            return Ok(produto);
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Product>> GetAll()
+        [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
+        public async Task<IActionResult> GetAll()
         {
-            return await _produtoService.GetAll();
+            return Ok(await _produtoService.GetAll());
         }
 
         [HttpPost]
-        public async Task<ActionResult<Product>> Create(Product product) {
-
-            List<string> result = await _validatoService.RunValidation(new ProductValidation(), product);
-
-            if (_validatoService.ExistsError()) {
-                return BadRequest(result); //StatusCode(StatusCodes.Status400BadRequest, result);
+        [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Post))]
+        public async Task<IActionResult> Create(Product product)
+        {
+            var errorNotification = await _produtoService.Create(product);
+            if (errorNotification.Exists())
+            {
+                return BadRequest(new
+                {
+                    type = "Validação de Campos",
+                    title = "Campos requeridos ou invalidos",
+                    status = 404,
+                    errors = errorNotification.GetAll()
+                });
             }
-
-            return StatusCode(StatusCodes.Status200OK, "Model is valid for update!");
+            return CreatedAtAction(nameof(GetById), new { id = product.Id }, product);
         }
+
+        [HttpPut]
+        [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Put))]
+        public async Task<IActionResult> Update(int id, Product product)
+        {
+            var errorNotification = await _produtoService.Update(id,product);
+            if (errorNotification.Exists())
+            {
+                return BadRequest(new
+                {
+                    type = "Validação de Campos",
+                    title = "Campos requeridos ou invalidos",
+                    status = 404,
+                    errors = errorNotification.GetAll()
+                });
+            }
+            return NoContent();
+        }
+
+        [HttpDelete("{id:int}")]
+        [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Delete))]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await _produtoService.Delete(id);
+            return Ok();
+        }
+
 
     }
 }
