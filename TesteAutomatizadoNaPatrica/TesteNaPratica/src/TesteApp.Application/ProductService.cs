@@ -27,9 +27,10 @@ namespace TesteApp.Application
             {
                 return errorNotification;
             }
-            if (await _repository.Search(p => p.Name == product.Name) == null)
+            var returnSearch = await _repository.Search(p => p.Name == product.Name);
+            if (returnSearch.Any())
             {
-                errorNotification.Add("Produto não encontrado");
+                errorNotification.Add(new ItemNotification() { Name="Produto", Description="Já existe um produto registrado com nome informado."});
                 return errorNotification;
             }
             await _repository.Create(product);
@@ -41,13 +42,13 @@ namespace TesteApp.Application
             Notifier errorNotification = new Notifier();
             if (id != product.Id)
             {
-                errorNotification.Add("Verifique os dados informado");
+                errorNotification.Add(new ItemNotification() { Name = "Id", Description = "Verifique os dados informados." });
                 return errorNotification;
             }
             var existProduct = await _repository.Get(id);
             if (existProduct.Id == 0)
             {
-                errorNotification.Add("Produto não encontrado");
+                errorNotification.Add(new ItemNotification() { Name="Produto",Description="Produto não encontrado"});
                 return errorNotification;
             }
             errorNotification = _validatoService.RunValidation(new ProductValidation(), product);

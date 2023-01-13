@@ -23,7 +23,7 @@ namespace TesteApp.Application
         {
             foreach (var error in validationResult.Errors)
             {
-                _notifications.Add(error.ErrorMessage);
+                _notifications.Add(new ItemNotification() { Name = error.PropertyName, Description = error.ErrorMessage });
             }
             return _notifications;
         }
@@ -33,8 +33,7 @@ namespace TesteApp.Application
             where TE : BaseEntity
         {
             var validator = validacao.Validate(entidade);
-            if (!validator.IsValid)
-            {
+            if (!validator.IsValid) {
                 Notify(validator);
             }
             return _notifications;

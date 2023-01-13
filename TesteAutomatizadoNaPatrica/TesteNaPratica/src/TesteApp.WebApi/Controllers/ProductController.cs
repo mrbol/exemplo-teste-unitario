@@ -47,8 +47,8 @@ namespace TesteApp.WebApi.Controllers
             {
                 return BadRequest(new
                 {
-                    type = "Validação de Campos",
-                    title = "Campos requeridos ou invalidos",
+                    type = "Notificação",
+                    title = "Um ou mais erros ocorridos",
                     status = 400,
                     errors = errorNotification.GetAll()
                 });
@@ -65,8 +65,8 @@ namespace TesteApp.WebApi.Controllers
             {
                 return BadRequest(new
                 {
-                    type = "Validação de Campos",
-                    title = "Campos requeridos ou invalidos",
+                    type = "Notificação",
+                    title = "Um ou mais erros ocorridos",
                     status = 400,
                     errors = errorNotification.GetAll()
                 });
@@ -83,10 +83,10 @@ namespace TesteApp.WebApi.Controllers
             {
                 return BadRequest(new
                 {
-                    type = "Falha",
-                    title = "Falha ao realizar operação",
+                    type = "Notificação",
+                    title = "Um ou mais erros ocorridos",
                     status = 400,
-                    errors = new List<string>() { "Ocorreu um erro inesperado" }
+                    errors = new List<ItemNotification>(){ new ItemNotification() { Name="Produto",Description="Ação Delete provocou uma ocorrencia inesperada"} }
                 });
             }
             return Ok();

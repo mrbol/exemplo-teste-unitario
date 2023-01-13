@@ -8,18 +8,18 @@ namespace TesteApp.Domain.Entities
 {
     public class Notifier
     {
-        private List<String> _notifications;
+        private List<ItemNotification> _notifications;
 
         public Notifier()
         {
-            _notifications = new List<String>();
+            _notifications = new List<ItemNotification>();
         }
 
-        public void Add(string value) {
+        public void Add(ItemNotification value) {
             _notifications.Add(value);
         }
 
-        public List<string> GetAll()
+        public List<ItemNotification> GetAll()
         {
             return _notifications;
         }
