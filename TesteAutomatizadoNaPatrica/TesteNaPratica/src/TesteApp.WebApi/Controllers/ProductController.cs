@@ -49,7 +49,7 @@ namespace TesteApp.WebApi.Controllers
                 {
                     type = "Validação de Campos",
                     title = "Campos requeridos ou invalidos",
-                    status = 404,
+                    status = 400,
                     errors = errorNotification.GetAll()
                 });
             }
@@ -67,7 +67,7 @@ namespace TesteApp.WebApi.Controllers
                 {
                     type = "Validação de Campos",
                     title = "Campos requeridos ou invalidos",
-                    status = 404,
+                    status = 400,
                     errors = errorNotification.GetAll()
                 });
             }
@@ -85,7 +85,7 @@ namespace TesteApp.WebApi.Controllers
                 {
                     type = "Falha",
                     title = "Falha ao realizar operação",
-                    status = 404,
+                    status = 400,
                     errors = new List<string>() { "Ocorreu um erro inesperado" }
                 });
             }
