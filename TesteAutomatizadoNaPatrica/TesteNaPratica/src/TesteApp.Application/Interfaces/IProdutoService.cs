@@ -11,7 +11,7 @@ namespace TesteApp.Application.Interfaces
     {
         Task<Notifier> Create(Product product);
         Task<Notifier> Update(int id,Product product);
-        Task Delete(int id);
+        Task<bool> Delete(int id);
         Task<Product> Get(int id);
         Task<IEnumerable<Product>> GetAll();
 

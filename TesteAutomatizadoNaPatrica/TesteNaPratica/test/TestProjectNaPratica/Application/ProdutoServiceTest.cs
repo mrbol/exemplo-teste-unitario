@@ -104,6 +104,43 @@ namespace TestProjectNaPratica.Application
             //Asset
             Assert.True(errorNotification.Exists());
         }
+
+        [Fact]
+        public async void ApagarrProdutoComSucessoRetornaTrue() {
+
+            //Arrange
+            Product productDelete = new Product()
+            {
+                Id = 2,
+                Name = "Atualizando",
+                Description = "Descricao de Produto",
+                Barcode = "198123654789",
+                Rate = 10
+            };
+            _productRepository.Get(productDelete.Id).Returns(productDelete);
+            _productRepository.Delete(productDelete.Id).Returns(1);
+
+            //Act
+            bool sucesso = await _productService.Delete(productDelete.Id);
+
+            //Assert
+            Assert.True(sucesso);
+        }
+
+        [Fact]
+        public async void ApagarrProdutoFalhaComRetornoFalse()
+        {
+            //Arrange
+            int id =2;
+            Product productEmpty = new Product();
+            _productRepository.Get(id).Returns(productEmpty);
+
+            //Act
+            bool falha = await _productService.Delete(id);
+
+            //Assert
+            Assert.False(falha);
+        }
     }
 
 }

@@ -30,9 +30,9 @@ namespace TesteApp.Persistence.Context
 
         public DbSet<Product> Products { get; set; }
 
-        Task<int> IApplicationDbContext.SaveChanges()
+        public async Task<int> SaveChangesAsync()
         {
-            throw new NotImplementedException();
+            return await base.SaveChangesAsync();
         }
     }
 }

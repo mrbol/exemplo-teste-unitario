@@ -27,7 +27,7 @@ namespace TesteApp.Application
             {
                 return errorNotification;
             }
-            if (await _repository.Search(p =>p.Name == product.Name) == null)
+            if (await _repository.Search(p => p.Name == product.Name) == null)
             {
                 errorNotification.Add("Produto não encontrado");
                 return errorNotification;
@@ -36,15 +36,17 @@ namespace TesteApp.Application
             return errorNotification;
         }
 
-        public async Task<Notifier> Update(int id,Product product)
+        public async Task<Notifier> Update(int id, Product product)
         {
             Notifier errorNotification = new Notifier();
-            if (id != product.Id) {
+            if (id != product.Id)
+            {
                 errorNotification.Add("Verifique os dados informado");
                 return errorNotification;
             }
             var existProduct = await _repository.Get(id);
-            if (existProduct.Id  == 0) {
+            if (existProduct.Id == 0)
+            {
                 errorNotification.Add("Produto não encontrado");
                 return errorNotification;
             }
@@ -57,9 +59,15 @@ namespace TesteApp.Application
             return errorNotification;
         }
 
-        public async Task Delete(int id)
+        public async Task<bool> Delete(int id)
         {
-            await _repository.Delete(id);
+            var existProduct = await _repository.Get(id);
+            if (existProduct.Id == 0)
+            {
+                return false;
+            }
+            int result = await _repository.Delete(id);
+            return (result > 0) ? true : false;
         }
 
         public void Dispose()
@@ -75,6 +83,6 @@ namespace TesteApp.Application
         public async Task<IEnumerable<Product>> GetAll()
         {
             return await _repository.GetAll();
-        }       
+        }
     }
 }

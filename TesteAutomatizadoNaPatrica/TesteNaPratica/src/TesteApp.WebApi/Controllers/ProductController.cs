@@ -60,7 +60,7 @@ namespace TesteApp.WebApi.Controllers
         [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Put))]
         public async Task<IActionResult> Update(int id, Product product)
         {
-            var errorNotification = await _produtoService.Update(id,product);
+            var errorNotification = await _produtoService.Update(id, product);
             if (errorNotification.Exists())
             {
                 return BadRequest(new
@@ -78,7 +78,17 @@ namespace TesteApp.WebApi.Controllers
         [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Delete))]
         public async Task<IActionResult> Delete(int id)
         {
-            await _produtoService.Delete(id);
+            bool result = await _produtoService.Delete(id);
+            if (!result)
+            {
+                return BadRequest(new
+                {
+                    type = "Falha",
+                    title = "Falha ao realizar operação",
+                    status = 404,
+                    errors = new List<string>() { "Ocorreu um erro inesperado" }
+                });
+            }
             return Ok();
         }
 
