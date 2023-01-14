@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TesteApp.Persistence", "src
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TesteApp.WebApi", "src\TesteApp.WebApi\TesteApp.WebApi.csproj", "{D8E2CBC7-8609-4963-998D-5C8D3E7E1D90}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProjectNaPratica", "test\TestProjectNaPratica\TestProjectNaPratica.csproj", "{41682FC2-D499-4DE8-91E8-3B3D4371F0F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProjectNaPratica", "test\TestProjectNaPratica\TestProjectNaPratica.csproj", "{41682FC2-D499-4DE8-91E8-3B3D4371F0F7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
