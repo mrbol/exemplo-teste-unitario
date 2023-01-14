@@ -18,8 +18,9 @@ namespace TestProjectNaPratica.Application
             _productService = new ProductService(_productRepository);
         }
 
-        [Fact]
-        public async void CriarProdutoComSucessoSemNotificacao()
+        [Fact(DisplayName = "Cadastrar um novo produto valido")]
+        [Trait("Categoria", "Cadastrar - Produto")]
+        public async void CriarProduto_ComSucesso_SemNotificacaoErro()
         {
             //Arrange
             Product productSucess = new Product()
@@ -40,8 +41,9 @@ namespace TestProjectNaPratica.Application
             Assert.False(errorNotification.Exists());
         }
 
-        [Fact]
-        public async void CriarProdutoFalhaComNotificacao()
+        [Fact(DisplayName = "Cadastrar um novo produto Invalido")]
+        [Trait("Categoria", "Cadastrar - Produto")]
+        public async void CriarProduto_Falha_ComNotificacaoErro()
         {
             //Arrange
             Product productfailure = new Product()
@@ -59,8 +61,9 @@ namespace TestProjectNaPratica.Application
             Assert.True(errorNotification.Exists());
         }
 
-        [Fact]
-        public async void AtualizarProdutoComSucessoSemNotificacao()
+        [Fact(DisplayName = "Atualizar um produto valido")]
+        [Trait("Categoria", "Atualizar - Produto")]
+        public async void AtualizarProduto_ComSucesso_SemNotificacaoErro()
         {
             //Arrange
             Product _productUpdate = new Product()
@@ -82,8 +85,9 @@ namespace TestProjectNaPratica.Application
             Assert.False(errorNotification.Exists());
         }
 
-        [Fact]
-        public async void AtualizarProdutoFalhaComNotificacao()
+        [Fact(DisplayName = "Atualizar um produto invalido")]
+        [Trait("Categoria", "Atualizar - Produto")]
+        public async void AtualizarProduto_Falha_ComNotificacaoErro()
         {
             //Arrange
             Product productUpdate = new Product()
@@ -105,8 +109,10 @@ namespace TestProjectNaPratica.Application
             Assert.True(errorNotification.Exists());
         }
 
-        [Fact]
-        public async void ApagarrProdutoComSucessoRetornaTrue() {
+        [Fact(DisplayName = "Apagar um produto valido")]
+        [Trait("Categoria", "Apagar - Produto")]
+        public async void ApagarrProduto_ComSucesso_RetornaTrue()
+        {
 
             //Arrange
             Product productDelete = new Product()
@@ -127,11 +133,12 @@ namespace TestProjectNaPratica.Application
             Assert.True(sucesso);
         }
 
-        [Fact]
-        public async void ApagarrProdutoFalhaComRetornoFalse()
+        [Fact(DisplayName = "Apagar um produto invalido")]
+        [Trait("Categoria", "Apagar - Produto")]
+        public async void ApagarrProduto_FalhaCom_RetornoFalse()
         {
             //Arrange
-            int id =2;
+            int id = 2;
             Product productEmpty = new Product();
             _productRepository.Get(id).Returns(productEmpty);
 
