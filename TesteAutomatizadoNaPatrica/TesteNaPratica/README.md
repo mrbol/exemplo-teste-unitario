@@ -16,7 +16,7 @@ Implementando Testes unitários com .NET Core: Mocking com NSubstitute
 
 Um dos desafios comuns quando escrevemos testes de unidade é isolar as dependências para conseguir testar apenas a unidade que desejamos. Para tal, utilizamos uma estratégia de criar objetos "falsos" ou Mock Objects para essas dependências.
 
-Neste projeto você encontrar implementação utilizando a biblioteca NSubstitute. Para entender como tudo funciona precisamos entender alguns conceitos. São eles:
+Neste projeto você vai encontrar implementação utilizando a biblioteca NSubstitute. Para entender como tudo funciona precisamos entender alguns conceitos. São eles:
 
 #### Princípio de Inversão de Dependência: 
 Princípio do SOLID que diz respeito a que um módulo de alto nível não deve depender de um módulo de baixo nível. Na prática, classes não devem depender de implementações, e sim de interfaces. Quando a implementação for alterada, considerando que as classes dependam de interfaces dessas classes concretas, alterações não seriam necessárias.
