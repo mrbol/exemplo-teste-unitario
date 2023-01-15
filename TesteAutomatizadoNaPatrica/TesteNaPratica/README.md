@@ -38,21 +38,47 @@ verifica se o objeto substituto recebeu uma chamada do método Método com os pa
 ##### DidNotReceive().Método(a, b): 
 Verifica se o objeto substituto não recebeu uma chamada do método Método com os parâmetros passados a e b.
 
-### Exemplo
-
-  > private readonly IProductRepository _productRepository; 
-  
-  > private readonly ProductService _productService; 
-  
-  No constructor da classe ProdutoServiceTest você encontrar o seguinte codigo 
-  > **_productRepository = Substitute.For<IProductRepository>();** // Permite a criação de um objeto substituto de tipo IProductRepository
-  
-  > _productService = new ProductService(_productRepository);
-  
-
 ### Escrevendo o teste unitário
-
 Com o código a ser testado devidamente implementado, é criada uma classe de teste, no projeto. Seguindo o padrão AAA (Arrange, Act, Assert).
+
+#### Construtor
+```
+        private readonly IProductRepository _productRepository;
+        private readonly ProductService _productService;
+
+        public ProdutoServiceTest()
+        {
+            _productRepository = Substitute.For<IProductRepository>();
+            _productService = new ProductService(_productRepository);
+        }
+```
+#### Teste
+```
+        [Fact(DisplayName = "Cadastrar um novo produto valido")]
+        [Trait("Categoria", "Cadastrar - Produto")]
+        public async void CriarProduto_ComSucesso_SemNotificacaoErro()
+        {
+            //Arrange
+            Product productSucess = new Product()
+            {
+                Name = "Produto Teste",
+                Description = "Descricao de Produto",
+                Barcode = "198123654789",
+                Rate = 10
+            };
+
+            IEnumerable<Product> productNull = new List<Product>();
+            _productRepository.Search(p => p.Name == productSucess.Name).Returns(productNull);
+
+            //Act
+            Notifier errorNotification = await _productService.Create(productSucess);
+
+            //Asset
+            Assert.False(errorNotification.Exists());
+        }
+```
+
+
 
 ### 📒 Documentação do NSubstitute
 https://nsubstitute.github.io/help/getting-started/
