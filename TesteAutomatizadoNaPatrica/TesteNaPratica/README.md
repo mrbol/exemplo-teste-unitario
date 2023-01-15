@@ -26,7 +26,8 @@ São objetos que simulam o comportamento de objetos reais. Podem definir retorno
 
 Assim como o Moq, o NSubstitute permite criar objetos baseados em interfaces, e definir contratos de retorno determinísticos. Por exemplo, consigo definir que um método de uma interface de Repositório retorne uma lista fixa, ou que retorne uma exceção quando invocado.
 
-### 🔨 Abaixo eu listo e descrevo brevemente os métodos principais do NSubstitute.
+### 🔨 Veja os métodos principais do NSubstitute 
+Segue a lista dos métodos principais do NSubstitute.
 
 ##### Substitute.For<T>: 
 Permite a criação de um objeto substituto de tipo T, onde T ou deve ser uma interface, ou com classes e seus membros que permitam override.
@@ -53,6 +54,9 @@ Verifica se o objeto substituto não recebeu uma chamada do método Método com 
 
 Com o código a ser testado devidamente implementado, é criada uma classe de teste, no projeto. Seguindo o padrão AAA (Arrange, Act, Assert).
 
+### 📒 Documentação do NSubstitute
+https://nsubstitute.github.io/help/getting-started/
+  
 💡 Não esqueça de rodar os script de migração no PowerShell
 
 Update-Datase -Verbose
