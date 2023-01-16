@@ -45,13 +45,7 @@ namespace TesteApp.WebApi.Controllers
             var errorNotification = await _produtoService.Create(product);
             if (errorNotification.Exists())
             {
-                return BadRequest(new
-                {
-                    type = "Notificação",
-                    title = "Um ou mais erros ocorridos",
-                    status = 400,
-                    errors = errorNotification.GetAll()
-                });
+                return MessageErroResult(errorNotification.GetAll());
             }
             return CreatedAtAction(nameof(GetById), new { id = product.Id }, product);
         }
@@ -63,13 +57,7 @@ namespace TesteApp.WebApi.Controllers
             var errorNotification = await _produtoService.Update(id, product);
             if (errorNotification.Exists())
             {
-                return BadRequest(new
-                {
-                    type = "Notificação",
-                    title = "Um ou mais erros ocorridos",
-                    status = 400,
-                    errors = errorNotification.GetAll()
-                });
+                return MessageErroResult(errorNotification.GetAll());
             }
             return NoContent();
         }
@@ -81,15 +69,20 @@ namespace TesteApp.WebApi.Controllers
             bool result = await _produtoService.Delete(id);
             if (!result)
             {
-                return BadRequest(new
-                {
-                    type = "Notificação",
-                    title = "Um ou mais erros ocorridos",
-                    status = 400,
-                    errors = new List<ItemNotification>(){ new ItemNotification() { Name="Produto",Description="Ação Delete provocou uma ocorrencia inesperada"} }
-                });
+                return MessageErroResult(new List<ItemNotification>() { new ItemNotification() { Name = "Produto", Description = "Ação Delete provocou uma ocorrencia inesperada" } });
             }
             return Ok();
+        }
+
+        private IActionResult MessageErroResult(List<ItemNotification> errorNotification)
+        {
+            return BadRequest(new
+            {
+                type = "Notificação",
+                title = "Um ou mais erros ocorridos",
+                status = 400,
+                errors = errorNotification
+            });
         }
 
 
