@@ -69,7 +69,12 @@ namespace TesteApp.WebApi.Controllers
             bool result = await _produtoService.Delete(id);
             if (!result)
             {
-                return MessageErroResult(new List<ItemNotification>() { new ItemNotification() { Name = "Produto", Description = "Ação Delete provocou uma ocorrencia inesperada" } });
+                return MessageErroResult(new List<ItemNotification>() {
+                    new ItemNotification() {
+                        Name = "Produto",
+                        Description = "Ação Delete provocou uma ocorrencia inesperada"
+                    }
+                });
             }
             return Ok();
         }
