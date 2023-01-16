@@ -4,7 +4,7 @@
 
 namespace TesteApp.Persistence.Migrations
 {
-    public partial class Inicial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,8 +15,8 @@ namespace TesteApp.Persistence.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "varchar(200)", nullable: false),
-                    Barcode = table.Column<string>(type: "varchar(255)", nullable: false),
-                    Description = table.Column<string>(type: "varchar(1000)", nullable: false),
+                    Barcode = table.Column<string>(type: "varchar(255)", nullable: true),
+                    Description = table.Column<string>(type: "varchar(1000)", nullable: true),
                     Rate = table.Column<decimal>(type: "decimal(10,2)", nullable: false)
                 },
                 constraints: table =>

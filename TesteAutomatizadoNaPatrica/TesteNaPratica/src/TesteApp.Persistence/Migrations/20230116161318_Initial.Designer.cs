@@ -11,8 +11,8 @@ using TesteApp.Persistence.Context;
 namespace TesteApp.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230109162633_Inicial")]
-    partial class Inicial
+    [Migration("20230116161318_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -32,11 +32,9 @@ namespace TesteApp.Persistence.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Barcode")
-                        .IsRequired()
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("varchar(1000)");
 
                     b.Property<string>("Name")

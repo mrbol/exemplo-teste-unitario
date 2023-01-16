@@ -20,12 +20,13 @@ namespace TesteApp.Persistence.Mappings
                 .HasColumnType("varchar(200)");
 
             builder.Property(p => p.Description)
-                .IsRequired()
+                .IsRequired(false)
                 .HasColumnType("varchar(1000)");
 
             builder.Property(p => p.Barcode)
-                .IsRequired()
+                .IsRequired(false)
                 .HasColumnType("varchar(255)");
+
             builder.Property(p => p.Rate)
             .IsRequired()
             .HasColumnType("decimal(10,2)");

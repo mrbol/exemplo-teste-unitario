@@ -30,11 +30,9 @@ namespace TesteApp.Persistence.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Barcode")
-                        .IsRequired()
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("varchar(1000)");
 
                     b.Property<string>("Name")
