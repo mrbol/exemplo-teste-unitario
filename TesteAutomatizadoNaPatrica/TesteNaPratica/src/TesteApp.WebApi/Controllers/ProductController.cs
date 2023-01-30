@@ -1,6 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
+using System.Text.Json;
 using TesteApp.Application.Interfaces;
 using TesteApp.Domain.Entities;
 
@@ -81,15 +83,13 @@ namespace TesteApp.WebApi.Controllers
 
         private IActionResult MessageErroResult(List<ItemNotification> errorNotification)
         {
-            return BadRequest(new
-            {
-                type = "Notificação",
-                title = "Um ou mais erros ocorridos",
-                status = 400,
-                errors = errorNotification
-            });
+            ProblemDetails problemDetails = new ProblemDetails();
+            problemDetails.Status = StatusCodes.Status400BadRequest;
+            problemDetails.Title = "Um ou mais erros ocorridos";
+            problemDetails.Type = "https://tools.ietf.org/html/rfc7231#section-6.5.1";
+            problemDetails.Extensions.Add("Erros", errorNotification);
+
+            return BadRequest(problemDetails);       
         }
-
-
     }
 }
