@@ -1,4 +1,4 @@
-# Projetos de exemplos de Teste Unitáro
+# Projetos de exemplos de Teste Unitário
 
 Este repositório foi criado para armazenar códigos de exemplo 
 
